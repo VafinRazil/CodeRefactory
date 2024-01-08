@@ -59,7 +59,6 @@ public class WebSecurityConfig {
     http.csrf(AbstractHttpConfigurer::disable)
         .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .cors(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(auth -> 
           auth.requestMatchers("/auth/**", "/request/**").permitAll()
               .anyRequest().authenticated()
