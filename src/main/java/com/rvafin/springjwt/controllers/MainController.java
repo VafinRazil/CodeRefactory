@@ -8,6 +8,7 @@ import com.rvafin.springjwt.payload.request.ChatRequest;
 import com.rvafin.springjwt.payload.request.Prompt;
 import com.rvafin.springjwt.repository.HistoryRepository;
 import com.rvafin.springjwt.security.services.UserService;
+import com.rvafin.springjwt.service.PromptBuilder;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -44,7 +45,7 @@ public class MainController {
         System.out.println(openaiConfiguration.getKey());
         con.setRequestProperty("Authorization", "Bearer " + openaiConfiguration.getKey());
         con.setDoOutput(true);
-        ChatRequest chatRequest = new ChatRequest(openaiConfiguration.getModel(), prompt.toString());
+        ChatRequest chatRequest = new ChatRequest(openaiConfiguration.getModel(), PromptBuilder.buildRequestToChatGPT(prompt));
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(chatRequest);
         OutputStream os = con.getOutputStream();
@@ -72,7 +73,6 @@ public class MainController {
             response.append(inputLine);
         }
         in.close();
-        System.out.println(response);
         return ResponseEntity.ok(response);
     }
 }

@@ -1,44 +1,58 @@
 package com.rvafin.springjwt.payload.request;
 
-public class Prompt {
-    private String tone;
-    private String language;
-    private String type;
+import com.rvafin.springjwt.enums.ProcessingToneType;
+import com.rvafin.springjwt.enums.ProgrammingLanguage;
+import com.rvafin.springjwt.enums.PromptType;
 
-    private String body;
+public class Prompt {
+    private ProcessingToneType tone;
+    private PromptType type;
+    private ProgrammingLanguage languageRequest;
+
+    private String code;
+    private String additional;
 
     public Prompt(){}
 
-    public String getTone() {
+    public ProgrammingLanguage getLanguageRequest() {
+        return languageRequest;
+    }
+
+    public void setLanguageRequest(ProgrammingLanguage languageRequest) {
+        this.languageRequest = languageRequest;
+    }
+
+    public ProcessingToneType getTone() {
         return tone;
     }
 
-    public void setTone(String tone) {
+    public void setTone(ProcessingToneType tone) {
         this.tone = tone;
     }
 
-    public String getLanguage() {
-        return language;
-    }
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getType() {
+    public PromptType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(PromptType type) {
         this.type = type;
     }
 
-    public String getBody() {
-        return body;
+    public String getCode() {
+        return code;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getAdditional() {
+        return additional;
+    }
+
+    public void setAdditional(String additional) {
+        this.additional = additional;
     }
 
     @Override
