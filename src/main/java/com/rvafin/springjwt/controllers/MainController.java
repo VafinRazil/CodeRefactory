@@ -59,18 +59,25 @@ public class MainController {
         } else {
             inputStream = con.getInputStream();
         }
+        History history = new History();
         if (user.isPresent()){
-            History history = new History();
-            history.setBody(prompt.toString());
+            history.setRequestCode(prompt.getCode());
+            history.setProgrammingLanIndex(prompt.getLanguageRequest().getIndex());
             history.setRequestCreator(user.get());
             history.setDateTimeCreate(LocalDateTime.now());
-            historyRepository.save(history);
         }
         BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
         String inputLine;
         StringBuilder response = new StringBuilder();
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
+        }
+        if (responseCode == 200 && user.isPresent()){
+            System.out.println("dddd");
+            JSONObject jsonObject = new JSONObject(response.toString());
+            String content = jsonObject.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
+            history.setResponseCode(content);
+            historyRepository.save(history);
         }
         in.close();
         return ResponseEntity.ok(response);

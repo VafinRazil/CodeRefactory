@@ -13,8 +13,11 @@ public class History {
     private Long id;
 
     private LocalDateTime dateTimeCreate;
-
-    private String body;
+    @Column(columnDefinition = "TEXT")
+    private String requestCode;
+    @Column(columnDefinition = "TEXT")
+    private String responseCode;
+    private int programmingLanIndex;
 
     @ManyToOne
     @JoinColumn(name = "request_creator_id")
@@ -44,11 +47,27 @@ public class History {
         this.dateTimeCreate = dateTimeCreate;
     }
 
-    public String getBody() {
-        return body;
+    public String getRequestCode() {
+        return requestCode;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setRequestCode(String requestCode) {
+        this.requestCode = requestCode;
+    }
+
+    public String getResponseCode() {
+        return responseCode;
+    }
+
+    public void setResponseCode(String responseCode) {
+        this.responseCode = responseCode;
+    }
+
+    public int getProgrammingLanIndex() {
+        return programmingLanIndex;
+    }
+
+    public void setProgrammingLanIndex(int programmingLanIndex) {
+        this.programmingLanIndex = programmingLanIndex;
     }
 }

@@ -30,7 +30,10 @@ public class UserController {
         List<History> historyList = historyRepository.getHistoriesByUser(user.getId());
         List<HistoryDTO> historyDTOList = historyList.stream().map(history -> {
             HistoryDTO historyDTO = new HistoryDTO();
-            historyDTO.setBody(history.getBody());
+            historyDTO.setRequestCode(history.getRequestCode());
+            historyDTO.setResponseCode(history.getResponseCode());
+            historyDTO.setProgLang(String.valueOf(history.getProgrammingLanIndex()));
+            historyDTO.setId(history.getId());
             historyDTO.setDateTimeCreate(history.getDateTimeCreate().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss")));
             return historyDTO;
         }).collect(Collectors.toList());
