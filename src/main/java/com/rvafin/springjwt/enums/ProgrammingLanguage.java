@@ -23,6 +23,10 @@ public enum ProgrammingLanguage {
         return index;
     }
 
+    public String getStrIndex(){
+        return String.valueOf(index);
+    }
+
     public void setIndex(int index) {
         this.index = index;
     }

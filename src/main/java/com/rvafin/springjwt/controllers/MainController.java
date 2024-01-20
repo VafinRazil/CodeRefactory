@@ -62,7 +62,7 @@ public class MainController {
         History history = new History();
         if (user.isPresent()){
             history.setRequestCode(prompt.getCode());
-            history.setProgrammingLanIndex(prompt.getLanguageRequest().getIndex());
+            history.setProgrammingLanIndex(prompt.getLanguageRequest().getStrIndex());
             history.setRequestCreator(user.get());
             history.setDateTimeCreate(LocalDateTime.now());
         }

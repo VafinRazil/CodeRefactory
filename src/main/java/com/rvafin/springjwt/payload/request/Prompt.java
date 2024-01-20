@@ -56,7 +56,13 @@ public class Prompt {
     }
 
     @Override
-    public String toString(){
-        return "";
+    public String toString() {
+        return "Prompt{" +
+                "tone=" + tone +
+                ", type=" + type +
+                ", languageRequest=" + languageRequest +
+                ", code='" + code + '\'' +
+                ", additional='" + additional + '\'' +
+                '}';
     }
 }

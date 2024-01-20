@@ -17,7 +17,7 @@ public class History {
     private String requestCode;
     @Column(columnDefinition = "TEXT")
     private String responseCode;
-    private int programmingLanIndex;
+    private String programmingLanIndex;
 
     @ManyToOne
     @JoinColumn(name = "request_creator_id")
@@ -63,11 +63,11 @@ public class History {
         this.responseCode = responseCode;
     }
 
-    public int getProgrammingLanIndex() {
+    public String getProgrammingLanIndex() {
         return programmingLanIndex;
     }
 
-    public void setProgrammingLanIndex(int programmingLanIndex) {
+    public void setProgrammingLanIndex(String programmingLanIndex) {
         this.programmingLanIndex = programmingLanIndex;
     }
 }
