@@ -49,7 +49,7 @@ public class MainController {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(chatRequest);
         OutputStream os = con.getOutputStream();
-        os.write(json.getBytes());
+        os.write(json.getBytes("UTF-8"));
         os.flush();
         os.close();
         int responseCode = con.getResponseCode();
@@ -66,14 +66,13 @@ public class MainController {
             history.setRequestCreator(user.get());
             history.setDateTimeCreate(LocalDateTime.now());
         }
-        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream,  "UTF-8"));
         String inputLine;
         StringBuilder response = new StringBuilder();
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
         }
         if (responseCode == 200 && user.isPresent()){
-            System.out.println("dddd");
             JSONObject jsonObject = new JSONObject(response.toString());
             String content = jsonObject.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
             history.setResponseCode(content);
