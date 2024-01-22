@@ -12,7 +12,7 @@ public class PromptBuilder {
                 append("тебе нужно ").append(prompt.getType().getValue()).append(", свой ответ представь только в виде кода и он должен быть как можно ").
                 append(prompt.getTone().getValue()).append(".\n").append("Вот код:\n").append(prompt.getCode()).append("\n");
         if (prompt.getAdditional() != null && !prompt.getAdditional().isEmpty()) {
-            builder.append("Дополнительно:\n").append(prompt.getAdditional());
+            builder.append(prompt.getAdditional());
         }
         return builder.toString();
     }
